@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_day_2021/models/job.dart';
-import 'package:flutter_day_2021/services/jobs_service.dart';
+import 'package:flutter_day_2021/services/db_service.dart';
 import 'package:flutter_day_2021/widgets/job_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
         title: const Text('FlAppwrite Jobs'),
       ),
       body: FutureBuilder(
-        future: JobsService.instance.getJobs(context),
+        future: DBService.instance.getJobs(context),
         builder: (context, AsyncSnapshot<List<Job>> snapshot) {
           if (snapshot.hasData && snapshot.data != null) {
             return ListView(
