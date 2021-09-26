@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 
-class WelcomePage extends StatefulWidget {
-  const WelcomePage({Key? key}) : super(key: key);
+class SignupPage extends StatefulWidget {
+  const SignupPage({Key? key}) : super(key: key);
 
   @override
-  State<WelcomePage> createState() => _WelcomePageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _WelcomePageState extends State<WelcomePage> {
+class _SignupPageState extends State<SignupPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
+      extendBodyBehindAppBar: true,
       extendBody: true,
       body: Container(
         decoration: BoxDecoration(
@@ -32,7 +38,7 @@ class _WelcomePageState extends State<WelcomePage> {
           children: <Widget>[
             const SizedBox(height: 60.0),
             const Text(
-              'Welcome to',
+              'Join',
               style: TextStyle(
                 fontSize: 40,
                 color: Colors.white,
@@ -47,13 +53,23 @@ class _WelcomePageState extends State<WelcomePage> {
             ),
             const SizedBox(height: 10.0),
             const Text(
-              'Please login to continue',
+              'Create an account',
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.white,
               ),
             ),
             const SizedBox(height: 20.0),
+            TextField(
+              controller: _nameController,
+              decoration: const InputDecoration(
+                labelText: 'Enter your name',
+              ),
+              style: TextStyle(
+                color: Colors.grey.shade200,
+              ),
+            ),
+            const SizedBox(height: 10.0),
             TextField(
               controller: _emailController,
               decoration: const InputDecoration(
@@ -81,61 +97,25 @@ class _WelcomePageState extends State<WelcomePage> {
                 onPrimary: Colors.blue,
                 fixedSize: const Size(200, 50),
               ),
-              child: const Text('Login'),
+              child: const Text('Create'),
               onPressed: () {
+                final name = _nameController.text;
                 final email = _emailController.text;
                 final password = _passwordController.text;
-                if (email.isEmpty || password.isEmpty) {
+                if (name.isEmpty || email.isEmpty || password.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text('Please enter your email and password'),
+                    content: Text("All fields are required."),
                   ));
                   return;
                 }
-                Navigator.pushReplacementNamed(context, '/home');
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text("Account created, login to continue."),
+                ));
+                Navigator.pop(context);
               },
             ),
             const SizedBox(height: 30.0),
           ],
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        elevation: 0,
-        child: SizedBox(
-          height: 50,
-          child: Row(
-            children: [
-              Expanded(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Colors.pink,
-                    fixedSize: const Size(0, 50),
-                    elevation: 0,
-                    shape: const ContinuousRectangleBorder(),
-                  ),
-                  child: const Text('Login Anonymously'),
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/home');
-                  },
-                ),
-              ),
-              Expanded(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Colors.pink,
-                    fixedSize: const Size(0, 50),
-                    elevation: 0,
-                    shape: const ContinuousRectangleBorder(),
-                  ),
-                  child: const Text('Signup'),
-                  onPressed: () => Navigator.pushNamed(context, '/signup'),
-                ),
-              ),
-              const SizedBox(height: 30.0),
-            ],
-          ),
         ),
       ),
     );
