@@ -12,6 +12,12 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: const Text('FlAppwrite Jobs'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.exit_to_app),
+            onPressed: () => Navigator.pushReplacementNamed(context, '/login'),
+          )
+        ],
       ),
       body: FutureBuilder(
         future: DBService.instance.getJobs(context),
