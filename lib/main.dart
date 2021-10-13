@@ -5,6 +5,7 @@ import 'package:flutter_day_2021/pages/home.dart';
 import 'package:flutter_day_2021/pages/login.dart';
 import 'package:flutter_day_2021/pages/signup.dart';
 import 'package:flutter_day_2021/res/styles.dart';
+import 'package:flutter_day_2021/services/db_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -111,7 +112,14 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const WelcomePage(),
+      home: FutureBuilder(
+          future: DBService.instance.isLoggedIn(),
+          builder: (context, AsyncSnapshot<bool> snapshot) {
+            if (snapshot.hasData && snapshot.data!) {
+              return const HomePage();
+            }
+            return const WelcomePage();
+          }),
       routes: {
         '/login': (context) => const WelcomePage(),
         '/home': (context) => const HomePage(),

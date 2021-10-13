@@ -37,4 +37,8 @@ class DBService {
   Future<bool> createAccount(String name, String email, String password) async {
     return true;
   }
+
+  Future<bool> isLoggedIn() async {
+    return false;
+  }
 }
