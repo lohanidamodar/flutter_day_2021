@@ -25,7 +25,7 @@ class Job {
     String? description,
     String? company,
     String? location,
-    String? url,
+    String? link,
     String? logo,
   }) {
     return Job(
@@ -34,7 +34,7 @@ class Job {
       description: description ?? this.description,
       company: company ?? this.company,
       location: location ?? this.location,
-      link: url ?? this.link,
+      link: link ?? this.link,
       logo: logo ?? this.logo,
     );
   }
