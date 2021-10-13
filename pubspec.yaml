@@ -22,9 +22,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/jobs.json
-    - assets/built-with-appwrite.png
-    - assets/bg.png
+    - assets/
 
   
   

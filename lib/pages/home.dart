@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
                           style: Theme.of(context).textTheme.headline5,
                         ),
                         Text(
-                          "Job",
+                          "Flutter Job",
                           style: Theme.of(context).textTheme.headline5,
                         ),
                       ],

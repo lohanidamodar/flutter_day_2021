@@ -18,17 +18,26 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
       extendBodyBehindAppBar: true,
       extendBody: true,
       body: AppwriteLogo(
         child: ListView(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(36.0),
           children: <Widget>[
-            const SizedBox(height: 60.0),
+            const SizedBox(height: 10.0),
+            Row(
+              children: [
+                IconButton(
+                  padding: const EdgeInsets.all(0),
+                  icon: Image.asset(
+                    'assets/back-icon.png',
+                    width: 24,
+                  ),
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ],
+            ),
+            const SizedBox(height: 40.0),
             Text(
               'Join',
               style: Theme.of(context).textTheme.headline5,

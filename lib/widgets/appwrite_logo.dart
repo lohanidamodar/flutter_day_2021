@@ -16,9 +16,8 @@ class AppwriteLogo extends StatelessWidget {
         child,
         Align(
           alignment: Alignment.bottomRight,
-          child: Card(
-            margin: const EdgeInsets.only(right: 26, bottom: 26),
-            color: Colors.transparent,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 20.0),
             child: Image.asset(
               'assets/built-with-appwrite.png',
               width: 112,

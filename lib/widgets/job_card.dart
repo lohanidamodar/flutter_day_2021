@@ -29,18 +29,18 @@ class JobCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              if(logo != null)
-              Card(
-                margin: const EdgeInsets.all(0),
-                color: const Color(0xff302D39),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.network(
-                    logo!,
-                    width: 60,
+              if (logo != null)
+                Card(
+                  margin: const EdgeInsets.all(0),
+                  color: const Color(0xff302D39),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Image.network(
+                      logo!,
+                      height: 40,
+                    ),
                   ),
                 ),
-              ),
               const SizedBox(height: 24.0),
               Text(
                 title,
@@ -65,7 +65,7 @@ class JobCard extends StatelessWidget {
               const SizedBox(height: 24.0),
               Text(
                 description,
-                style: Theme.of(context).textTheme.bodyText2,
+                style: Theme.of(context).textTheme.bodyText1,
               ),
             ],
           ),

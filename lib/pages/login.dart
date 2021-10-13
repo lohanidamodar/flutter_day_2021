@@ -20,7 +20,7 @@ class _WelcomePageState extends State<WelcomePage> {
       extendBody: true,
       body: AppwriteLogo(
         child: ListView(
-          padding: const EdgeInsets.all(26.0),
+          padding: const EdgeInsets.all(36.0),
           children: <Widget>[
             const SizedBox(height: 60.0),
             Text(
@@ -87,9 +87,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       Navigator.pushReplacementNamed(context, '/home');
                     }
                   },
-                  style: TextButton.styleFrom(
-                      primary: Colors.white,
-                      textStyle: const TextStyle(fontSize: 16.0)),
+                  style: TextButton.styleFrom(primary: Colors.white),
                   child: const Text("Anonymous login"),
                 ),
                 Container(
@@ -103,8 +101,8 @@ class _WelcomePageState extends State<WelcomePage> {
                 TextButton(
                   onPressed: () => Navigator.pushNamed(context, '/signup'),
                   style: TextButton.styleFrom(
-                      primary: Colors.white,
-                      textStyle: const TextStyle(fontSize: 16.0)),
+                    primary: Colors.white,
+                  ),
                   child: const Text("Sign up"),
                 ),
               ],

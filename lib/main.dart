@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'FlAppwrite Jobs',
+      debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
       darkTheme: ThemeData(
         primarySwatch: primaryScheme,
@@ -60,6 +61,9 @@ class MyApp extends StatelessWidget {
           margin: const EdgeInsets.all(16.0),
         ),
         inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: const Color(0xff1E1C24),
+          contentPadding: const EdgeInsets.all(20.0),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16.0),
             borderSide: const BorderSide(
@@ -90,11 +94,20 @@ class MyApp extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16.0),
             ),
-            textStyle: const TextStyle(
+            textStyle: TextStyle(
               color: Colors.white,
               fontSize: 16.0,
+              fontFamily: GoogleFonts.poppins().fontFamily,
             ),
             fixedSize: const Size(0, 60),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            textStyle: TextStyle(
+              fontSize: 16.0,
+              fontFamily: GoogleFonts.poppins().fontFamily,
+            ),
           ),
         ),
       ),
