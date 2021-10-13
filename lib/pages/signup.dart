@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_day_2021/services/db_service.dart';
+import 'package:flutter_day_2021/widgets/appwrite_logo.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -15,55 +17,36 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
       extendBodyBehindAppBar: true,
       extendBody: true,
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.pink[900]!,
-              Colors.pink[600]!,
-              Colors.pink[400]!,
-            ],
-          ),
-        ),
+      body: AppwriteLogo(
         child: ListView(
           padding: const EdgeInsets.all(16.0),
           children: <Widget>[
             const SizedBox(height: 60.0),
-            const Text(
+            Text(
               'Join',
-              style: TextStyle(
-                fontSize: 40,
-                color: Colors.white,
-              ),
+              style: Theme.of(context).textTheme.headline5,
             ),
-            const Text(
-              'FlAppwrite Jobs',
-              style: TextStyle(
-                fontSize: 40,
-                color: Colors.white,
-              ),
+            Text(
+              'FlAppwrite jobs',
+              style: Theme.of(context).textTheme.headline5,
             ),
             const SizedBox(height: 10.0),
-            const Text(
+            Text(
               'Create an account',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-              ),
+              style: Theme.of(context).textTheme.headline4,
             ),
             const SizedBox(height: 20.0),
             TextField(
               controller: _nameController,
               decoration: const InputDecoration(
-                labelText: 'Enter your name',
+                labelText: 'Name',
               ),
               style: TextStyle(
                 color: Colors.grey.shade200,
@@ -73,7 +56,7 @@ class _SignupPageState extends State<SignupPage> {
             TextField(
               controller: _emailController,
               decoration: const InputDecoration(
-                labelText: 'Enter your email',
+                labelText: 'E-mail',
               ),
               style: TextStyle(
                 color: Colors.grey.shade200,
@@ -83,22 +66,17 @@ class _SignupPageState extends State<SignupPage> {
             TextField(
               controller: _passwordController,
               decoration: const InputDecoration(
-                labelText: 'Enter your password',
+                labelText: 'Password',
               ),
               style: TextStyle(
                 color: Colors.grey.shade200,
               ),
               obscureText: true,
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.white,
-                onPrimary: Colors.blue,
-                fixedSize: const Size(200, 50),
-              ),
-              child: const Text('Create'),
-              onPressed: () {
+              child: const Text('Create account'),
+              onPressed: () async {
                 final name = _nameController.text;
                 final email = _emailController.text;
                 final password = _passwordController.text;
@@ -108,10 +86,15 @@ class _SignupPageState extends State<SignupPage> {
                   ));
                   return;
                 }
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text("Account created, login to continue."),
-                ));
-                Navigator.pop(context);
+
+                final created = await DBService.instance
+                    .createAccount(name, email, password);
+                if (created) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Account created, login to continue."),
+                  ));
+                  Navigator.pop(context);
+                }
               },
             ),
             const SizedBox(height: 30.0),

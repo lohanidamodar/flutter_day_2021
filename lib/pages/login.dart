@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_day_2021/services/db_service.dart';
+import 'package:flutter_day_2021/widgets/appwrite_logo.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -14,75 +16,50 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       extendBody: true,
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.pink[900]!,
-              Colors.pink[600]!,
-              Colors.pink[400]!,
-            ],
-          ),
-        ),
+      body: AppwriteLogo(
         child: ListView(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(26.0),
           children: <Widget>[
             const SizedBox(height: 60.0),
-            const Text(
-              'Welcome to',
-              style: TextStyle(
-                fontSize: 40,
-                color: Colors.white,
-              ),
+            Text(
+              'Welcome back to',
+              style: Theme.of(context).textTheme.headline5,
             ),
-            const Text(
-              'FlAppwrite Jobs',
-              style: TextStyle(
-                fontSize: 40,
-                color: Colors.white,
-              ),
+            Text(
+              'FlAppwrite jobs',
+              style: Theme.of(context).textTheme.headline5,
             ),
             const SizedBox(height: 10.0),
-            const Text(
-              'Please login to continue',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-              ),
+            Text(
+              'Let\'s sign in.',
+              style: Theme.of(context).textTheme.headline4,
             ),
             const SizedBox(height: 20.0),
             TextField(
               controller: _emailController,
               decoration: const InputDecoration(
-                labelText: 'Enter your email',
+                labelText: 'E-mail',
               ),
-              style: TextStyle(
-                color: Colors.grey.shade200,
-              ),
+              style: TextStyle(color: Colors.grey.shade200, fontSize: 16.0),
             ),
             const SizedBox(height: 10.0),
             TextField(
               controller: _passwordController,
               decoration: const InputDecoration(
-                labelText: 'Enter your password',
+                labelText: 'Password',
               ),
               style: TextStyle(
                 color: Colors.grey.shade200,
+                fontSize: 16.0,
               ),
               obscureText: true,
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.white,
-                onPrimary: Colors.blue,
-                fixedSize: const Size(200, 50),
-              ),
               child: const Text('Login'),
-              onPressed: () {
+              onPressed: () async {
                 final email = _emailController.text;
                 final password = _passwordController.text;
                 if (email.isEmpty || password.isEmpty) {
@@ -91,51 +68,55 @@ class _WelcomePageState extends State<WelcomePage> {
                   ));
                   return;
                 }
-                Navigator.pushReplacementNamed(context, '/home');
+                final loggedIn =
+                    await DBService.instance.login(email, password);
+                if (loggedIn) {
+                  Navigator.pushReplacementNamed(context, '/home');
+                }
               },
             ),
             const SizedBox(height: 30.0),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () async {
+                    final loggedIn = await DBService.instance.anonymousLogin();
+                    if (loggedIn) {
+                      Navigator.pushReplacementNamed(context, '/home');
+                    }
+                  },
+                  style: TextButton.styleFrom(
+                      primary: Colors.white,
+                      textStyle: const TextStyle(fontSize: 16.0)),
+                  child: const Text("Anonymous login"),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                  ),
+                  width: 5.0,
+                  height: 5.0,
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pushNamed(context, '/signup'),
+                  style: TextButton.styleFrom(
+                      primary: Colors.white,
+                      textStyle: const TextStyle(fontSize: 16.0)),
+                  child: const Text("Sign up"),
+                ),
+              ],
+            )
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
+      bottomNavigationBar: const BottomAppBar(
         color: Colors.transparent,
         elevation: 0,
         child: SizedBox(
           height: 50,
-          child: Row(
-            children: [
-              Expanded(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Colors.pink,
-                    fixedSize: const Size(0, 50),
-                    elevation: 0,
-                    shape: const ContinuousRectangleBorder(),
-                  ),
-                  child: const Text('Login Anonymously'),
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/home');
-                  },
-                ),
-              ),
-              Expanded(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Colors.pink,
-                    fixedSize: const Size(0, 50),
-                    elevation: 0,
-                    shape: const ContinuousRectangleBorder(),
-                  ),
-                  child: const Text('Signup'),
-                  onPressed: () => Navigator.pushNamed(context, '/signup'),
-                ),
-              ),
-              const SizedBox(height: 30.0),
-            ],
-          ),
         ),
       ),
     );

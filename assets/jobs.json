@@ -1,18 +1,20 @@
 [
     {
-        "id": "1",
+        "$id": "1",
         "title": "Flutter Developer",
         "company": "Google",
         "location": "Mountain View, CA",
         "description": "Develop and deploy Android and iOS applications using Flutter.",
-        "url": "https://appwriters.dev"
+        "url": "https://appwriters.dev",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/300px-Google_%22G%22_Logo.svg.png"
     },
     {
-        "id": "2",
+        "$id": "2",
         "title": "Fullstack Engineer",
         "company": "Appwrite",
         "location": "Tel Aviv",
         "description": "Develop and deploy Android and iOS applications using Flutter.",
-        "url": "https://appwriters.dev"
+        "url": "https://appwriters.dev",
+        "logo": "https://demo.appwrite.io/v1/storage/files/61667e8e6cb16/preview?project=615d75f94461f"
     }
 ]

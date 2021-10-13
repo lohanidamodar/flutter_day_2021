@@ -7,6 +7,8 @@ class Job {
   final String company;
   final String location;
   final String url;
+  final String? logo;
+
   Job({
     required this.id,
     required this.title,
@@ -14,6 +16,7 @@ class Job {
     required this.company,
     required this.location,
     required this.url,
+    this.logo,
   });
 
   Job copyWith({
@@ -23,6 +26,7 @@ class Job {
     String? company,
     String? location,
     String? url,
+    String? logo,
   }) {
     return Job(
       id: id ?? this.id,
@@ -31,6 +35,7 @@ class Job {
       company: company ?? this.company,
       location: location ?? this.location,
       url: url ?? this.url,
+      logo: logo ?? this.logo,
     );
   }
 
@@ -42,28 +47,29 @@ class Job {
       'company': company,
       'location': location,
       'url': url,
+      'logo': logo,
     };
   }
 
   factory Job.fromMap(Map<String, dynamic> map) {
     return Job(
-      id: map['id'],
+      id: map['\$id'],
       title: map['title'],
       description: map['description'],
       company: map['company'],
       location: map['location'],
       url: map['url'],
+      logo: map['logo'],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Job.fromJson(String source) =>
-      Job.fromMap(json.decode(source));
+  factory Job.fromJson(String source) => Job.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'JobData(id: $id, title: $title, description: $description, company: $company, location: $location, url: $url)';
+    return 'JobData(id: $id, title: $title, description: $description, company: $company, location: $location, url: $url, logo: $logo)';
   }
 
   @override
@@ -76,7 +82,8 @@ class Job {
         other.description == description &&
         other.company == company &&
         other.location == location &&
-        other.url == url;
+        other.url == url &&
+        other.logo == logo;
   }
 
   @override
@@ -86,6 +93,7 @@ class Job {
         description.hashCode ^
         company.hashCode ^
         location.hashCode ^
-        url.hashCode;
+        url.hashCode ^
+        logo.hashCode;
   }
 }
