@@ -70,6 +70,7 @@ class HomePage extends StatelessWidget {
                       logo: job.logo,
                     ),
                   ),
+                  const SizedBox(height: 60.0),
                 ],
               );
             }
