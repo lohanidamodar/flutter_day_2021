@@ -6,7 +6,7 @@ class Job {
   final String description;
   final String company;
   final String location;
-  final String url;
+  final String link;
   final String? logo;
 
   Job({
@@ -15,7 +15,7 @@ class Job {
     required this.description,
     required this.company,
     required this.location,
-    required this.url,
+    required this.link,
     this.logo,
   });
 
@@ -34,7 +34,7 @@ class Job {
       description: description ?? this.description,
       company: company ?? this.company,
       location: location ?? this.location,
-      url: url ?? this.url,
+      link: url ?? this.link,
       logo: logo ?? this.logo,
     );
   }
@@ -46,7 +46,7 @@ class Job {
       'description': description,
       'company': company,
       'location': location,
-      'url': url,
+      'link': link,
       'logo': logo,
     };
   }
@@ -58,7 +58,7 @@ class Job {
       description: map['description'],
       company: map['company'],
       location: map['location'],
-      url: map['url'],
+      link: map['link'],
       logo: map['logo'],
     );
   }
@@ -69,7 +69,7 @@ class Job {
 
   @override
   String toString() {
-    return 'JobData(id: $id, title: $title, description: $description, company: $company, location: $location, url: $url, logo: $logo)';
+    return 'JobData(id: $id, title: $title, description: $description, company: $company, location: $location, url: $link, logo: $logo)';
   }
 
   @override
@@ -82,7 +82,7 @@ class Job {
         other.description == description &&
         other.company == company &&
         other.location == location &&
-        other.url == url &&
+        other.link == link &&
         other.logo == logo;
   }
 
@@ -93,7 +93,7 @@ class Job {
         description.hashCode ^
         company.hashCode ^
         location.hashCode ^
-        url.hashCode ^
+        link.hashCode ^
         logo.hashCode;
   }
 }

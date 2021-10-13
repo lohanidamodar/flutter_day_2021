@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
         ),
         body: FutureBuilder(
           future: DBService.instance.getJobs(context),
-          builder: (context, AsyncSnapshot<List<Job>> snapshot) {
+          builder: (context, AsyncSnapshot<List<Job>?> snapshot) {
             if (snapshot.hasData && snapshot.data != null) {
               return ListView(
                 padding: const EdgeInsets.all(16.0),
@@ -66,7 +66,7 @@ class HomePage extends StatelessWidget {
                       company: job.company,
                       location: job.location,
                       description: job.description,
-                      url: job.url,
+                      url: job.link,
                       logo: job.logo,
                     ),
                   ),

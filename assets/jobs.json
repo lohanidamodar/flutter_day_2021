@@ -5,7 +5,7 @@
         "company": "Google",
         "location": "Mountain View, CA",
         "description": "Develop and deploy Android and iOS applications using Flutter.",
-        "url": "https://appwriters.dev",
+        "link": "https://appwriters.dev",
         "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/300px-Google_%22G%22_Logo.svg.png"
     },
     {
@@ -14,7 +14,7 @@
         "company": "Appwrite",
         "location": "Tel Aviv",
         "description": "We're building a different kind of company that will create the next generation of developer tools, and we are looking for amazing people to jump on board.",
-        "url": "https://appwriters.dev",
+        "link": "https://appwriters.dev",
         "logo": "https://demo.appwrite.io/v1/storage/files/61667e8e6cb16/preview?project=615d75f94461f"
     }
 ]
